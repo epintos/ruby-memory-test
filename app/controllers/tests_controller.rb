@@ -1,5 +1,7 @@
 class TestsController < ApplicationController
 
+  SAMPLES = 1_000
+
   def index
     tests
   end
@@ -7,7 +9,6 @@ class TestsController < ApplicationController
   private
 
   def tests
-    @tests ||= Test.all.sample(1000)
+    @tests ||= Test.order('RANDOM()').limit(SAMPLES)
   end
-
 end

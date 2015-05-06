@@ -21,5 +21,6 @@ module RubyMemoryTest
     # config.i18n.default_locale = :de
 
     GC::Profiler.enable
+    GC.start
   end
 end
