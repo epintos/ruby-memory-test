@@ -45,3 +45,7 @@ gem 'rails_12factor', group: :production
 
 gem 'newrelic_rpm', group: :production
 
+gem 'bullet', group: 'development'
+gem 'skylight'
+gem 'rack-mini-profiler'
+
