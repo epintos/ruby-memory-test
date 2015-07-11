@@ -32,8 +32,8 @@ gem 'slim'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use puma as the app server
-gem 'puma'
+# Use unicorn as the app server
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -48,4 +48,25 @@ gem 'newrelic_rpm', group: :production
 gem 'bullet', group: 'development'
 gem 'skylight'
 gem 'rack-mini-profiler'
+
+gem 'whenever', require: false
+
+# Sidekiq
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
+gem 'sidekiq-failures'
+gem 'sidekiq_mailer'
+
+group :development do
+  gem 'capistrano', '3.2.1'
+  gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-rbenv-install', '~> 1.2.0'
+  gem 'capistrano-nginx-unicorn'
+  gem 'capistrano-sidekiq'
+  gem 'capistrano-rails-console'
+  gem 'capistrano-postgresql', '~> 4.2.0'
+  gem 'airbrussh', require: false
+end
 

@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/capistrano/maintenance.git
+  revision: b31962d2ac134fae5e2f536380956a1042895c1e
+  specs:
+    capistrano-maintenance (1.0.0)
+      capistrano (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,11 +43,41 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    airbrussh (0.6.0)
+      sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.0)
     builder (3.2.2)
     bullet (4.14.5)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.9.0)
+    capistrano (3.2.1)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-nginx-unicorn (0.1.0)
+      capistrano (~> 3.0)
+    capistrano-postgresql (4.2.1)
+      capistrano (>= 3.0)
+    capistrano-rails (1.1.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rails-console (0.5.2)
+      capistrano (>= 3.0.0, < 4.0.0)
+    capistrano-rbenv (2.0.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano-rbenv-install (1.2.0)
+      capistrano (>= 3.0)
+      capistrano-rbenv (>= 2.0)
+    capistrano-sidekiq (0.5.3)
+      capistrano
+      sidekiq
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
+    chronic (0.10.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -48,11 +85,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    colorize (0.7.7)
+    connection_pool (2.2.0)
     erubis (2.7.0)
     execjs (2.5.2)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hike (1.2.3)
+    hitimes (1.2.2)
     i18n (0.7.0)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
@@ -62,6 +102,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
+    kgio (2.9.3)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -70,15 +111,18 @@ GEM
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
     newrelic_rpm (3.11.2.286)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     pg (0.18.1)
-    puma (2.11.2)
-      rack (>= 1.1, < 2.0)
     rack (1.6.0)
     rack-mini-profiler (0.9.3)
       rack (>= 1.1.3)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -110,8 +154,12 @@ GEM
       activesupport (= 4.2.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    raindrops (0.14.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    redis (3.2.1)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -121,6 +169,22 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sidekiq (3.4.1)
+      celluloid (~> 0.16.0)
+      connection_pool (>= 2.1.1)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
+    sidekiq-failures (0.4.4)
+      sidekiq (>= 2.16.0)
+    sidekiq_mailer (0.0.8)
+      actionmailer (>= 3.0)
+      activesupport (>= 3.0)
+      sidekiq (>= 2.3)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     skylight (0.6.0)
       activesupport (>= 3.0.0)
     slim (3.0.3)
@@ -136,10 +200,16 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sshkit (1.7.1)
+      colorize (>= 0.7.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     temple (0.7.5)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -147,26 +217,47 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.9.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     uniform_notifier (1.9.0)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrussh
   bullet
+  capistrano (= 3.2.1)
+  capistrano-maintenance!
+  capistrano-nginx-unicorn
+  capistrano-postgresql (~> 4.2.0)
+  capistrano-rails
+  capistrano-rails-console
+  capistrano-rbenv (~> 2.0)
+  capistrano-rbenv-install (~> 1.2.0)
+  capistrano-sidekiq
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   newrelic_rpm
   pg
-  puma
   rack-mini-profiler
   rails (= 4.2.1)
   rails_12factor
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  sidekiq
+  sidekiq-failures
+  sidekiq_mailer
+  sinatra (>= 1.3.0)
   skylight
   slim
   spring
   turbolinks
   uglifier (>= 1.3.0)
+  unicorn
+  whenever
