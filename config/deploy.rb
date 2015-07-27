@@ -25,8 +25,9 @@ set :keep_releases, 5
 
 set :pg_user, fetch(:deploy_user)
 set :pg_ask_for_password, true
+set :pg_database, fetch(:application)
 
-set :default_env, { rails_env: 'PRODUCTION', pepe_test: 'TEST' }
+set :default_env, { rails_env: 'PRODUCTION' }
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.2'

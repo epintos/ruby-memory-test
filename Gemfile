@@ -68,5 +68,6 @@ group :development do
   gem 'capistrano-rails-console'
   gem 'capistrano-postgresql', '~> 4.2.0'
   gem 'airbrussh', require: false
+  gem 'knife-solo'
 end
 

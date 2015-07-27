@@ -1,0 +1,25 @@
+{
+  "run_list": [
+    "recipe[provisions]",
+    "recipe[provisions::users]",
+    // "recipe[provisions::ssh]",
+    "recipe[provisions::postgres]",
+    "recipe[provisions::redis]"
+  ],
+  "group": "deployers",
+  "port": 12345,
+
+  "user": {
+    "name": "deployer",
+    "password": "$1$4I5QgSuH$xT1iE0eTfKiAuzVkRpQiF0"
+    // openssl passwd -1 "theplaintextpassword"
+  },
+
+  "db": {
+    "root_password": "deployer",
+    "user": {
+      "name": "deployer",
+      "password": "deployer"
+    }
+  }
+}
